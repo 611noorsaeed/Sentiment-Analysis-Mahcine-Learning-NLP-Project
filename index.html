@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* Set your desired background color */
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #007bff; /* Set your desired heading color */
+        }
+
+        .form-control {
+            background-color: #ffffff; /* Set your desired textarea background color */
+        }
+
+        .btn-primary {
+            background-color: #007bff; /* Set your desired button background color */
+            border-color: #007bff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0069d9; /* Set your desired button hover background color */
+            border-color: #0062cc;
+        }
+
+        .alert-success {
+            background-color: #d4edda; /* Set your desired success alert background color */
+            color: #155724; /* Set your desired success alert text color */
+            border-color: #c3e6cb;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da; /* Set your desired danger alert background color */
+            color: #721c24; /* Set your desired danger alert text color */
+            border-color: #f5c6cb;
+        }
+    </style>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Sentiment Analysis</h1>
+        <form method="POST" action="{{ url_for('analyze_sentiment') }}">
+            <div class="form-group">
+                <label for="comment">Enter your comment:</label>
+                <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Analyze</button>
+        </form>
+
+        {% if sentiment is defined %}
+            <div class="mt-4">
+                {% if sentiment == 1 %}
+                    <div class="alert alert-success" role="alert">Positive comment!</div>
+                {% else %}
+                    <div class="alert alert-danger" role="alert">Negative comment!</div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
